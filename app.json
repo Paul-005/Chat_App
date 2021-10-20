@@ -4,31 +4,29 @@
     "slug": "chat-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_chatroom.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo_chatroom.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/logo_chatroom.png",
+        "backgroundColor": "#eed611"
       },
       "package": "com.paulbabu05.chatapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo_chatroom.png"
     },
-    "description": ""
+    "description": "A ChatApp Developed By Paul Babu"
   }
 }

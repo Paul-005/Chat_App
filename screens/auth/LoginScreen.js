@@ -1,10 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import * as Google from "expo-google-app-auth";
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import firebase from "firebase";
 import "firebase/auth";
 import { AntDesign } from "@expo/vector-icons";
+import { Image } from "react-native-animatable";
+import * as Google from "expo-google-app-auth";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -33,6 +41,9 @@ export default function LoginScreen() {
       const result = await Google.logInAsync({
         androidClientId:
           "91537495329-amev85l9c1p0t364t8u78mqtc2av2uuh.apps.googleusercontent.com",
+        iosClientId:
+          "91537495329-4s5p83s2tvahblti89j398nbk0apef0u.apps.googleusercontent.com",
+
         scopes: ["profile", "email"],
       });
 
@@ -43,7 +54,7 @@ export default function LoginScreen() {
         return { cancelled: true };
       }
     } catch (e) {
-      console.log(e);
+      alert(e);
     }
   };
 
@@ -97,10 +108,23 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
-      <TouchableOpacity style={styles.loginBtn} onPress={signInWithGoogleAsync}>
-        <AntDesign name="google" size={24} color="white" />
-        <Text style={styles.loginText}>Google</Text>
-      </TouchableOpacity>
+      <Image
+        animation="slideInDown"
+        source={require("../../assets/logo_chatroom.png")}
+        style={styles.logo_image}
+      />
+      <View
+        animation="slideInDown"
+        style={{ width: "100%", alignItems: "center" }}
+      >
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={signInWithGoogleAsync}
+        >
+          <AntDesign name="google" size={24} color="orange" />
+          <Text style={styles.loginText}>Sign In With Google</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -110,6 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "gold",
+    justifyContent: "center",
   },
   logo: {
     fontWeight: "bold",
@@ -120,7 +145,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   loginBtn: {
-    backgroundColor: "tomato",
+    backgroundColor: "white",
     width: "80%",
     borderRadius: 25,
     height: 50,
@@ -129,12 +154,16 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 50,
     flexDirection: "row",
+    elevation: 5,
   },
   loginText: {
-    color: "white",
+    color: "orange",
     fontWeight: "bold",
     fontSize: 15,
     marginLeft: 14,
-    textTransform: "uppercase",
+  },
+  logo_image: {
+    borderRadius: 20,
+    width: "80%",
   },
 });
